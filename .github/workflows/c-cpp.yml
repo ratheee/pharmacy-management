@@ -1,0 +1,25 @@
+name: C++ CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        shell: bash
+        run: g++ -std=c++17 -Wall -Wextra -Wpedantic -Werror -Iinclude src/*.cpp -o pharmacy
+
+      - name: Smoke test (create owner account, then exit)
+        shell: bash
+        run: |
+          printf 'owner\nsecret1\nsecret1\n0\n' | ./pharmacy
+          grep -q '^owner|Seller|' accounts.txt
