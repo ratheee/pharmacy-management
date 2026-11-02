@@ -1,0 +1,20 @@
+# Build output
+*.exe
+*.o
+pharmacy
+
+# Visual Studio
+.vs/
+Debug/
+Release/
+x64/
+*.vcxproj.user
+
+# Runtime data files created by the program
+medicines.txt
+medicines.txt.tmp
+bills.txt
+bill_counter.txt
+accounts.txt
+login_history.txt
+requests.txt
